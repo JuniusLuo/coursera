@@ -145,7 +145,8 @@ fprintf('\n');
 % ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
-price = theta(1) + theta(2) * 1650 + theta(3) * 3; % You should change this
+est_features = [1 (1650-mu(1))/sigma(1) (3-mu(2))/sigma(2)]
+price = est_features * theta; % You should change this
 
 
 % ============================================================

@@ -32,10 +32,10 @@ for iter = 1:num_iters
     % Save the cost J in every iteration
     J_history(iter) = computeCostMulti(X, y, theta);
 
-    if (rem(iter, 100) == 0)
-        disp('iter:'), disp(iter), disp('theta:'), disp(theta), disp('J:'), disp(J_history(iter));
-        %fprintf('iter=%d, theta=%f, J=%f\n', iter, theta, J_history(iter));
-    endif
+    % if (rem(iter, 100) == 0)
+    %    disp('iter:'), disp(iter), disp('theta:'), disp(theta), disp('J:'), disp(J_history(iter));
+        % fprintf('iter=%d, theta=%f, J=%f\n', iter, theta, J_history(iter));
+    % endif
 end
 
 end
