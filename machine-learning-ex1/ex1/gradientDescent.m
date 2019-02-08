@@ -1,6 +1,6 @@
 function [theta, J_history] = gradientDescent(X, y, theta, alpha, num_iters)
 %GRADIENTDESCENT Performs gradient descent to learn theta
-%   theta = GRADIENTDESCENT(X, y, theta, alpha, num_iters) updates theta by 
+%   theta = GRADIENTDESCENT(X, y, theta, alpha, num_iters) updates theta by
 %   taking num_iters gradient steps with learning rate alpha
 
 % Initialize some useful values
@@ -11,22 +11,30 @@ for iter = 1:num_iters
 
     % ====================== YOUR CODE HERE ======================
     % Instructions: Perform a single gradient step on the parameter vector
-    %               theta. 
+    %               theta.
     %
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCost) and gradient here.
     %
 
-
-
-
-
+    %disp('sum X:'), disp(sum(X));
+    %disp('theta before:'), disp(theta);
+    %disp('sum(X*theta -y):'), disp(sum(X*theta-y));
+    %disp('sum((X*theta -y) .* X):'), disp(sum((X*theta-y) .* X));
+    %theta = theta - alpha * (sum((X * theta - y) .* X))' / m;
+    theta = theta - alpha * (X' * (X * theta - y)) / m;
 
 
     % ============================================================
 
-    % Save the cost J in every iteration    
+    % Save the cost J in every iteration
     J_history(iter) = computeCost(X, y, theta);
+
+    %if (rem(iter, 100) == 0)
+        %disp('iter:'), disp(iter), disp('theta:'), disp(theta), disp('J:'), disp(J_history(iter));
+        %fprintf('iter=%d, theta=%f, J=%f\n', iter, theta, J_history(iter));
+    %endif
+
 
 end
 
