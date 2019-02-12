@@ -70,6 +70,7 @@ fprintf(' 0.146561\n -0.548558\n 0.724722\n 1.398003\n');
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+
 %% ============ Part 2b: One-vs-All Training ============
 fprintf('\nTraining One-vs-All Logistic Regression...\n')
 
@@ -83,6 +84,9 @@ pause;
 %% ================ Part 3: Predict for One-Vs-All ================
 
 pred = predictOneVsAll(all_theta, X);
+
+disp('pred'), disp(pred'(1, 1:10)), disp(pred'(1, 500:510));
+disp('y'), disp(y'(1, 1:10)), disp(y'(1, 500:510));
 
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 
