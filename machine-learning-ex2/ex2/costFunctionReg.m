@@ -21,13 +21,13 @@ grad = zeros(size(theta));
 h = sigmoid(X * theta);
 
 % theta_1 is not included in reg
-reg = (lambda / (2 * m)) * (theta' * theta - theta(1)^2);
+temp = theta;
+temp(1) = 0;
 
+reg = (lambda / (2 * m)) * (temp' * temp);
 J = - (y' * log(h) + (1 .- y') * log(1 .- h)) / m + reg;
 
-ex_theta1 = ones(size(theta));
-ex_theta1(1) = 0;
-grad = (X' * (h - y) + lambda * theta .* ex_theta1) / m;
+grad = (X' * (h - y) + lambda * temp) / m;
 
 
 % =============================================================
