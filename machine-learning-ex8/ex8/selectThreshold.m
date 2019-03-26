@@ -11,28 +11,48 @@ bestF1 = 0;
 F1 = 0;
 
 stepsize = (max(pval) - min(pval)) / 1000;
+%fprintf('pval min %f, max %f, stepsize %f \n', min(pval), max(pval), stepsize);
+%disp(pval);
+
 for epsilon = min(pval):stepsize:max(pval)
-    
+
     % ====================== YOUR CODE HERE ======================
     % Instructions: Compute the F1 score of choosing epsilon as the
     %               threshold and place the value in F1. The code at the
     %               end of the loop will compare the F1 score for this
     %               choice of epsilon and set it to be the best epsilon if
     %               it is better than the current choice of epsilon.
-    %               
+    %
     % Note: You can use predictions = (pval < epsilon) to get a binary vector
     %       of 0's and 1's of the outlier predictions
 
+    % disp('pval'), disp(pval');
+    %disp('epsilon'), disp(epsilon);
+    predictions = (pval < epsilon);
+    %disp('predictions'), disp(predictions');
+    tp = 0;
+    fp = 0;
+    fn = 0;
+    for i = 1:size(pval)
+      if (yval(i) == 1)
+        if (predictions(i) == 1)
+          tp++;
+        else
+          fn++;
+        end
+      else
+        if (predictions(i) == 1)
+          fp++;
+        end
+      end
+    end
+    %fprintf('tp %d, fp %d fn %d', tp, fp, fn);
 
-
-
-
-
-
-
-
-
-
+    if (tp != 0)
+      p = tp / (tp + fp);
+      r = tp / (tp + fn);
+      F1 = 2 * p * r / (p + r);
+    end
 
 
     % =============================================================
